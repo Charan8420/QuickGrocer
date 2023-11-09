@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}QuickGrocer Cart{% endblock %}
+
+<!-- Hero Section -->
+{% block hero %} {% include "search_form.html" %} {% endblock %}
+
+<!---->
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2>Your Cart</h2>
+    </div>
+    <div class="col">
+        <div class="d-flex justify-content-end align-items-center">
+            <a
+                href="{{ url_for('auth_user.remove_all_from_cart') }}"
+                class="btn btn-outline-danger"
+                style="margin-right: 10px"
+                >Clear Cart</a
+            >
+            <a
+                href="{{ url_for('auth_user.purchase_all') }}"
+                class="btn btn-primary"
+                style="margin-left: 10px"
+                >Buy All!</a
+            >
+        </div>
+    </div>
+</div>
+
+<!-- Cart Section -->
+{% if carts %} {% for cart in carts %}
+<div class="container">
+    <hr />
+    <br />
+    <div class="row">
+        <div class="col">
+            <h3 class="mt-4">
+                <strong>{{ cart.product.product_name }}</strong>
+            </h3>
+            <img
+                src="{{ url_for('static', filename='images/' + cart.product.product_picture) }}"
+                alt="product Image"
+                class="img-fluid small-img" />
+        </div>
+        <div class="col vertical-line">
+            <br />
+            <h5>
+                <strong>Category:</strong>
+                {{ cart.product.category.category_name }}
+            </h5>
+            <h5>
+                <strong>Price Per Unit:</strong> ₹{{ cart.product.rate_per_unit
+                }}/{{ cart.product.unit.unit_name }}
+            </h5>
+            <h5>
+                <strong>Manufacture Date:</strong> {{
+                cart.product.manufacture_date }}
+            </h5>
+            <h5><strong>Quantity:</strong> {{ cart.product_quantity }}</h5>
+            <h5>
+                <strong>Total Price</strong> ₹{{ cart.product.rate_per_unit *
+                cart.product_quantity }}
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <br />
+            <div class="d-flex justify-content-center align-carts-center">
+                <a
+                    href="{{ url_for('auth_user.update_cart', cart_id=cart.id) }}"
+                    class="btn btn-outline-primary"
+                    style="margin-right: 10px"
+                    >Edit Cart</a
+                >
+                <a
+                    href="{{ url_for('auth_user.remove_from_cart', cart_id=cart.id) }}"
+                    class="btn btn-outline-primary"
+                    style="margin-left: 10px; margin-right: 10px"
+                    >Remove from Cart</a
+                >
+                <a
+                    href="{{ url_for('auth_user.purchase_cart', cart_id=cart.id) }}"
+                    class="btn btn-primary"
+                    style="margin-left: 10px"
+                    >Buy Now!</a
+                >
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+{% endfor %} {% else %}
+<br />
+<hr />
+<br />
+<h4>
+    <span class="text-danger">Your Cart is Empty</span>
+</h4>
+{% endif %} {% endblock %}

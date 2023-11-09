@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}QuickGrocer{% endblock %}
+
+<!-- Hero Section -->
+{% block hero %}
+<!---->
+{% include "search_form.html" %}
+<section class="jumbotron text-center bg-primary text-white">
+    <div class="container">
+        <h1>Welcome to QuickGrocer</h1>
+        <p class="lead">
+            Browse our wide range of fresh groceries at the best prices!
+        </p>
+        <a href="#home" class="btn btn-light btn-lg">Shop Now</a>
+    </div>
+</section>
+{% endblock %}
+
+<!-- Product List Section -->
+{% block content %}
+
+<div id="home"></div>
+
+<!-- Category List -->
+{% if ctgrs %}
+<h2 class="navbar text-center bg-info text-white text-monospace">Categories</h2>
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            {% for category in ctgrs %}
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <a
+                        href="{{ url_for('views.view_category', category_id=category.id) }}"
+                        class="card-img-link">
+                        <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='images/' + category.category_picture) }}"
+                            alt="category Image" />
+                    </a>
+
+                    <div class="card-body align-cat-title">
+                        <h4 class="card-title">{{ category.category_name }}</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Product List -->
+{% include "product_section.html" %} {% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}QuickGrocer{% endblock %}
+
+<!---->
+
+{% block content %} {% if cart %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-4">Confirm purchase :</h1>
+            <hr />
+            <h3 class="mt-4">
+                <strong>{{ cart.product.product_name }}</strong>
+            </h3>
+            <h3 class="mt-4">
+                <img
+                    src="{{ url_for('static', filename='images/' + cart.product.product_picture) }}"
+                    alt="Image of {{ cart.product.product_name }}" />
+            </h3>
+            <h3 class="mt-4">
+                <strong>Quantity:</strong> {{ cart.product_quantity }}
+            </h3>
+            <hr />
+            <form
+                method="post"
+                action="{{ url_for('auth_user.purchase_cart', cart_id=cart.id) }}"
+                enctype="multipart/form-data">
+                <br />
+                <br />
+                <button type="submit" class="btn btn-primary btn-block">
+                    Buy Product
+                </button>
+            </form>
+            <br />
+            <div class="mx-auto" style="width: 60px">
+                <a href="{{ url_for('auth_user.cart') }}" class="btn btn-light"
+                    >Cancel</a
+                >
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %}

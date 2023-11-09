@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}Edit Category{% endblock %}
+
+<!-- Edit Category Form -->
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title text-center">
+                        Edit Category {{ category.id }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Changes to be made -->
+                    <form
+                        method="post"
+                        action="{{ url_for('auth_admin.edit_category', category_id=category_id) }}"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="category_name"><h5>Name :</h5></label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="category_name"
+                                name="category_name"
+                                value="{{ category.category_name }}" />
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <!-- Button to show/hide the old image -->
+                            <input
+                                type="button"
+                                id="oldImageButton"
+                                class="btn btn-info"
+                                value="Show Old Image"
+                                onclick="oldImagePreviewer()" />
+                            <!-- Display the old image initially (hidden by default) -->
+                            <img
+                                id="oldImage"
+                                src="{{ url_for('static', filename='images/' + category.category_picture) }}"
+                                alt="Old Category Image"
+                                width="200"
+                                style="display: none" />
+                            <br /><br />
+                            <label for="category_picture"
+                                ><h5>New Picture :</h5></label
+                            >
+                            <input
+                                type="file"
+                                class="form-control-file"
+                                id="category_picture"
+                                name="category_picture"
+                                accept=".jpg, .jpeg, .png, .webp, .svg" />
+                        </div>
+                        <hr />
+                        <br />
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Edit Category</button
+                        ><br />
+                        <div class="mx-auto" style="width: 60px">
+                            <a
+                                href="{{ url_for('auth_admin.view_category', category_id=category.id) }}"
+                                class="btn btn-light"
+                                >Cancel</a
+                            >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

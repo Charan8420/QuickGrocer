@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}{{ product.product_name }}{% endblock %}
+
+<!-- Hero Section -->
+{% block hero %} {% include "search_form.html" %} {% endblock %}
+
+<!---->
+
+{% block content %}
+<!-- Product Section -->
+{% if product %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-4">{{ product.product_name }}</h1>
+            <hr />
+            <img
+                src="{{ url_for('static', filename='images/' + product.product_picture) }}"
+                alt="product Image"
+                class="img-fluid big-img" />
+            <h3>
+                <strong>Category:</strong>
+                {{ product.category.category_name }}
+            </h3>
+            <h3><strong>Rate Per Unit:</strong> {{ product.rate_per_unit }}</h3>
+            <h3><strong>Unit:</strong> {{ product.unit.unit_name }}</h3>
+            <h3>
+                <strong>Manufacture Date</strong> {{ product.manufacture_date }}
+            </h3>
+
+            {% if product.total_quantity > 10 %}
+            <h3>
+                <span class="text-success">In Stock</span>
+            </h3>
+            {% elif product.total_quantity > 0 and product.total_quantity <= 10
+            %}
+            <h3>
+                <span class="text-warning"
+                    >Limited Stock : {{ product.total_quantity }}</span
+                >
+            </h3>
+            {% else %}
+            <h3>
+                <span class="text-danger">Out Of Stock</span>
+            </h3>
+            {% endif %}
+
+            <div class="d-flex justify-content-center align-items-center">
+                <a
+                    href="{{ url_for('auth_user.add_to_cart', product_id=product.id) }}"
+                    class="btn btn-outline-primary"
+                    style="margin-right: 10px"
+                    >Add to Cart</a
+                >
+                <a
+                    href="{{ url_for('auth_user.purchase_product', product_id=product.id) }}"
+                    class="btn btn-primary"
+                    style="margin-left: 10px"
+                    >Buy Now!</a
+                >
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %}

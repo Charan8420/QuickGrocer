@@ -1,0 +1,47 @@
+<!-- Product List Section -->
+{% if products %}
+<h2 class="navbar text-center bg-info text-white text-monospace">Products</h2>
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            {% for product in products %}
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <a
+                        href="{{ url_for('views.view_product', product_id=product.id) }}"
+                        class="card-img-link">
+                        <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='images/' + product.product_picture) }}"
+                            alt="Product Image" />
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.product_name }}</h5>
+                        <p class="card-text">
+                            ₹{{ product.rate_per_unit }}/{{
+                            product.unit.unit_name }}
+                        </p>
+                        <div
+                            class="d-flex justify-content-center align-items-center">
+                            <a
+                                href="{{ url_for('auth_user.add_to_cart', product_id=product.id) }}"
+                                class="btn btn-outline-primary"
+                                style="margin-right: 10px"
+                                >Add to Cart</a
+                            >
+                            <a
+                                href="{{ url_for('auth_user.purchase_product', product_id=product.id) }}"
+                                class="btn btn-primary"
+                                style="margin-left: 10px"
+                                >Buy Now!</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}{{ unit.unit_name }}{% endblock %}
+
+<!-- Unit Section -->
+{% block content %} {% if unit %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-4">Confirmation page to delete :</h1>
+            <hr />
+            <br />
+            <h3 class="mt-4"><strong>Unit ID:</strong> {{ unit.id }}</h3>
+            <h3 class="mt-4">
+                <strong>Unit Name:</strong> {{ unit.unit_name }}
+            </h3>
+            <br /><br />
+            <form
+                method="post"
+                action="{{ url_for('auth_admin.delete_unit', unit_id=unit.id) }}"
+                enctype="multipart/form-data">
+                <div class="form-group">
+                    <br /><br />
+                    <h6 style="color: red"><strong>Warning :</strong></h6>
+                    <p>
+                        This action cannot be undone. Are you sure you want to
+                        delete this?
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-danger btn-block">
+                    Delete Unit
+                </button>
+            </form>
+            <br />
+            <div class="mx-auto" style="width: 60px">
+                <a
+                    href="{{ url_for('auth_admin.view_unit', unit_id=unit.id) }}"
+                    class="btn btn-light"
+                    >Cancel</a
+                >
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %}

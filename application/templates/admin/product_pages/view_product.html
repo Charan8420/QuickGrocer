@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}{{ product.product_name }}{% endblock %}
+
+<!-- Product Section -->
+{% block content %} {% if product %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-4">{{ product.product_name }}</h1>
+            <hr />
+            <p><strong>Product ID:</strong> {{ product.id }}</p>
+            <p><strong>Product Name:</strong> {{ product.product_name }}</p>
+            <p>
+                <strong>Product Image:</strong>
+                <img
+                    src="{{ url_for('static', filename='images/' + product.product_picture) }}"
+                    alt="product Image"
+                    class="img-fluid" />
+            </p>
+            <p>
+                <strong>Product Category:</strong> {{
+                product.category.category_name }}
+            </p>
+            <p>
+                <strong>Product Rate Per Unit:</strong> {{ product.rate_per_unit
+                }}
+            </p>
+            <p><strong>Product Unit:</strong> {{ product.unit.unit_name }}</p>
+            <p>
+                <strong>Product manufacture Date</strong> {{
+                product.manufacture_date }}
+            </p>
+            <p>
+                <strong>Product Quantity:</strong> {{ product.total_quantity }}
+            </p>
+
+            <p>
+                <a
+                    href="{{ url_for('auth_admin.edit_product', product_id=product.id) }}"
+                    class="btn btn-primary"
+                    >Edit</a
+                >
+                <a
+                    href="{{ url_for('auth_admin.delete_product', product_id=product.id) }}"
+                    class="btn btn-danger"
+                    >Delete</a
+                >
+            </p>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %}

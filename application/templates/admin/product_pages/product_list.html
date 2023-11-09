@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+<!-- Title Section -->
+{% block title %}Product List{% endblock %}
+
+<!-- Products list display -->
+{% block content %}
+<h2>Product List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Total Quantity</th>
+            <th>Manufacture Date</th>
+            <th>Unit</th>
+            <th>Rate Per Unit</th>
+            <th>Category</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- For loop to display list -->
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>
+                <a
+                    href="{{ url_for('auth_admin.view_product', product_id=product.id) }}"
+                    >{{ product.product_name }}</a
+                >
+            </td>
+            <td>
+                <img
+                    src="{{ url_for('static', filename='images/' + product.product_picture) }}"
+                    alt="{{ product.name }}"
+                    class="img-thumbnail" />
+            </td>
+            <td>{{ product.total_quantity }}</td>
+            <td>{{ product.manufacture_date }}</td>
+            <td>{{ product.unit.unit_name }}</td>
+            <td>{{ product.rate_per_unit }}</td>
+            <td>{{ product.category.category_name }}</td>
+
+            <td>
+                <a
+                    href="{{ url_for('auth_admin.edit_product', product_id=product.id) }}"
+                    class="btn btn-primary"
+                    >Edit</a
+                >
+            </td>
+            <td>
+                <a
+                    href="{{ url_for('auth_admin.delete_product', product_id=product.id) }}"
+                    class="btn btn-danger"
+                    >Delete</a
+                >
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}{{ unit.unit_name }}{% endblock %}
+
+<!-- Unit Section -->
+{% block content %} {% if unit %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-4">{{ unit.unit_name }}</h1>
+            <hr />
+            <p><strong>Unit ID:</strong> {{ unit.id }}</p>
+            <p><strong>Unit Name:</strong> {{ unit.unit_name }}</p>
+            <p>
+                <a
+                    href="{{ url_for('auth_admin.edit_unit', unit_id=unit.id) }}"
+                    class="btn btn-primary"
+                    >Edit</a
+                >
+                <a
+                    href="{{ url_for('auth_admin.delete_unit', unit_id=unit.id) }}"
+                    class="btn btn-danger"
+                    >Delete</a
+                >
+            </p>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %}

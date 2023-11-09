@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+<!-- Changes to be made -->
+<!-- Title Section -->
+{% block title %}New Product{% endblock %}
+
+<!-- New Product Form -->
+{% block content %} {% if user.is_authenticated %} {% if user.is_admin() %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title text-center">Add New Product</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Changes to be made -->
+                    <form
+                        method="post"
+                        action="{{ url_for('auth_admin.new_product') }}"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="product_name">Product Name :</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="product_name"
+                                name="product_name"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="product_picture"
+                                >Product Picture :</label
+                            >
+                            <input
+                                type="file"
+                                class="form-control-file"
+                                id="product_picture"
+                                name="product_picture"
+                                accept=".jpg, .jpeg, .png, .webp, .svg"
+                                required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_quantity">Total Quantity</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="total_quantity"
+                                name="total_quantity"
+                                required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="unit_id">Unit</label>
+                            <select
+                                class="form-control"
+                                id="unit_id"
+                                name="unit_id"
+                                required>
+                                <option value="" selected disabled>
+                                    --- Select ---
+                                </option>
+                                {% for unit in units %}
+                                <option value="{{ unit.id }}">
+                                    {{ unit.unit_name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rate_per_unit">Rate per Unit</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="rate_per_unit"
+                                name="rate_per_unit"
+                                required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manufacture_date"
+                                >Manufacture Date</label
+                            >
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="manufacture_date"
+                                name="manufacture_date"
+                                required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category_id">Category</label>
+                            <select
+                                class="form-control"
+                                id="category_id"
+                                name="category_id"
+                                required>
+                                <option value="" selected disabled>
+                                    --- Select ---
+                                </option>
+                                {% for category in categories %}
+                                <option value="{{ category.id }}">
+                                    {{ category.category_name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Create Product
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %} {% endif %} {% endblock %}

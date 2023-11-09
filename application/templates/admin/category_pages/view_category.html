@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}{{ category.category_name }}{% endblock %}
+
+<!-- Category Section -->
+{% block content %} {% if category %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-4">{{ category.category_name }}</h1>
+            <hr />
+            <p><strong>Category ID:</strong> {{ category.id }}</p>
+            <p><strong>Category Name:</strong> {{ category.category_name }}</p>
+            <p>
+                <strong>Category Image:</strong>
+                <img
+                    src="{{ url_for('static', filename='images/' + category.category_picture) }}"
+                    alt="Category Image"
+                    class="img-fluid" />
+            </p>
+            <p>
+                <a
+                    href="{{ url_for('auth_admin.edit_category', category_id=category.id) }}"
+                    class="btn btn-primary"
+                    >Edit</a
+                >
+                <a
+                    href="{{ url_for('auth_admin.delete_category', category_id=category.id) }}"
+                    class="btn btn-danger"
+                    >Delete</a
+                >
+            </p>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %}

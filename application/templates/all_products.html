@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}QuickGrocer{% endblock %}
+
+<!-- Hero Section -->
+{% block hero %} {% include "search_form.html" %} {% endblock %}
+
+<!---->
+{% block content %}
+
+<!-- Product List -->
+{% include "product_section.html" %} {% endblock %}

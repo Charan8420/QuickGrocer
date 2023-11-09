@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+<!-- Title Section -->
+{% block title %}Category List{% endblock %}
+
+<!-- Categories list display -->
+{% block content %}
+<h2>Category List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- For loop to display list -->
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.id }}</td>
+            <td>
+                <a
+                    href="{{ url_for('auth_admin.view_category', category_id=category.id) }}"
+                    >{{ category.category_name }}</a
+                >
+            </td>
+            <td>
+                <img
+                    src="{{ url_for('static', filename='images/' + category.category_picture) }}"
+                    alt="{{ category.name }}"
+                    class="img-thumbnail" />
+            </td>
+            <td>
+                <a
+                    href="{{ url_for('auth_admin.edit_category', category_id=category.id) }}"
+                    class="btn btn-primary"
+                    >Edit</a
+                >
+            </td>
+            <td>
+                <a
+                    href="{{ url_for('auth_admin.delete_category', category_id=category.id) }}"
+                    class="btn btn-danger"
+                    >Delete</a
+                >
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

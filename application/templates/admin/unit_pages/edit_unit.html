@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}Edit Unit{% endblock %}
+
+<!-- Edit Unit Form -->
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title text-center">Edit Unit</h5>
+                </div>
+                <div class="card-body">
+                    <h1 class="mt-4">{{ unit.unit_name }}</h1>
+                    <hr />
+                    <p><strong>Unit ID:</strong> {{ unit.id }}</p>
+                    <p><strong>Old Unit Name:</strong> {{ unit.unit_name }}</p>
+                    <br /><br /><br />
+                    <!-- Changes to be made -->
+                    <form
+                        method="post"
+                        action="{{ url_for('auth_admin.edit_unit', unit_id=unit_id) }}"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="unit_name">New Unit Name :</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="unit_name"
+                                name="unit_name"
+                                required />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Change Unit
+                        </button>
+                        <div class="mx-auto" style="width: 60px">
+                            <a
+                                href="{{ url_for('auth_admin.view_unit', unit_id=unit.id) }}"
+                                class="btn btn-light"
+                                >Cancel</a
+                            >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

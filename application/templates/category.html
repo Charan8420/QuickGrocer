@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}QuickGrocer{% endblock %}
+
+<!-- Hero Section -->
+{% block hero %} {% include "search_form.html" %} {% endblock %}
+
+<!---->
+{% block content %}
+
+<h2 class="navbar text-center bg-primary text-white text-monospace">
+    {{ category.category_name }}
+</h2>
+<img
+    src="{{ url_for('static', filename='images/' + category.category_picture) }}"
+    alt="Category Image"
+    class="img-fluid big-img" />
+
+<br /><br />
+
+{% include "product_section.html" %} {% endblock %}

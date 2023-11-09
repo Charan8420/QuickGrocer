@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}Sign-up{% endblock %}
+
+<!-- User Sign-up Form -->
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title text-center">User Sign-up</h5>
+                </div>
+                <div class="card-body">
+                    <form
+                        method="post"
+                        action="{{ url_for('auth_user.signup') }}">
+                        <div class="form-group">
+                            <label for="username">Username :</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="username"
+                                name="username"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="password1">Password :</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="password1"
+                                name="password1"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="password2">Confirm Password :</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="password2"
+                                name="password2"
+                                required />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Sign-up
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- Login Link -->
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Already have an account?
+                    <a class="ml-2" href="{{ url_for('auth_user.login') }}"
+                        >Login!</a
+                    >
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

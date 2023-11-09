@@ -1,0 +1,90 @@
+
+.search {
+    width: 100% !important;
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+}
+
+.search-input {
+    width: 80% !important;
+}
+
+.search-form{
+    display: flex;
+    flex-wrap: nowrap !important;
+    justify-content: center;
+}
+
+.price-filter{
+    width: 100% !important;
+}
+
+.category-filter{
+    width: 100% !important;
+    display: flex;
+}
+
+.search-filters{
+    color: white;
+    display: flex;
+    flex-wrap: nowrap !important;
+    justify-content: center;
+}
+
+.card .card-img-top {
+    border: 1px solid lightgray;
+    margin-top: 4px !important;
+    height: 250px !important;
+    width: 250px !important;
+    align-self: center !important;
+    justify-content: center;
+}
+
+.card .card-img-link {
+    margin-top: 4px !important;
+    height: 250px !important;
+    width: 250px !important;
+    align-self: center !important;
+    justify-content: center;
+}
+
+.align-cat-title {
+    text-align: center;
+}
+
+h2.text-monospace{
+    text-align: center !important;
+    align-self: center !important;
+    justify-content: center;
+}
+
+h1.text-monospace{
+    text-align: center !important;
+    align-self: center !important;
+    justify-content: center;
+}
+
+.big-img {
+    border: 1px solid lightgray;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    height: 360px !important;
+    width: 360px !important;
+    align-self: center !important;
+    justify-content: center;
+}
+
+.small-img {
+    border: 1px solid lightgray;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    height: 180px !important;
+    width: 180px !important;
+    align-self: center !important;
+    justify-content: center;
+}
+
+.vertical-line {
+    border-left: 1px solid lightgrey;
+    padding-left: 15px; 
+}

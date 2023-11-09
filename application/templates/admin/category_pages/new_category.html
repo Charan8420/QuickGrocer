@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}New Category{% endblock %}
+
+<!-- New Category Form -->
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title text-center">Add New Category</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Changes to be made -->
+                    <form
+                        method="post"
+                        action="{{ url_for('auth_admin.new_category') }}"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="category_name">Category Name :</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="category_name"
+                                name="category_name"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="category_picture"
+                                >Category Picture :</label
+                            >
+                            <input
+                                type="file"
+                                class="form-control-file"
+                                id="category_picture"
+                                name="category_picture"
+                                accept=".jpg, .jpeg, .png, .webp, .svg"
+                                required />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Create Category
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

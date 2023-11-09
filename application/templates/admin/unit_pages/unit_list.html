@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+<!-- Title Section -->
+{% block title %}Unit List{% endblock %}
+
+<!-- Units list display -->
+{% block content %}
+<h2>Unit List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- For loop to display list -->
+        {% for unit in units %}
+        <tr>
+            <td>{{ unit.id }}</td>
+            <td>
+                <a href="{{ url_for('auth_admin.view_unit', unit_id=unit.id) }}"
+                    >{{ unit.unit_name }}</a
+                >
+            </td>
+            <td>
+                <a
+                    href="{{ url_for('auth_admin.edit_unit', unit_id=unit.id) }}"
+                    class="btn btn-primary"
+                    >Edit</a
+                >
+            </td>
+            <td>
+                <a
+                    href="{{ url_for('auth_admin.delete_unit', unit_id=unit.id) }}"
+                    class="btn btn-danger"
+                    >Delete</a
+                >
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

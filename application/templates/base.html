@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Add Bootstrap CSS link -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <!-- Add custom CSS styles -->
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}" />
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('views.home') }}"
+                    >QuickGrocer</a
+                >
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        {% if not user.is_authenticated %}
+                        <li class="nav-item active">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('views.home') }}"
+                                >Home</a
+                            >
+                        </li>
+                        {% endif %} {% if user.is_authenticated %}
+                        <!-- Check if current_user is admin -->
+                        {% if user.is_admin() %}
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_admin.admin_view') }}"
+                                >Admin View</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_admin.new_category') }}"
+                                >Add Category</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_admin.new_product') }}"
+                                >Add Product</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_admin.new_unit') }}"
+                                >Add Unit</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_admin.category_list') }}"
+                                >Category List</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_admin.product_list') }}"
+                                >Product List</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_admin.unit_list') }}"
+                                >Unit List</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_admin.admin_logout') }}"
+                                style="color: red"
+                                >Logout</a
+                            >
+                        </li>
+                        {% else %}
+                        <li class="nav-item active">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('views.home') }}"
+                                >Home</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('views.products') }}"
+                                >Products</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('views.categories') }}"
+                                >Categories</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_user.cart') }}"
+                                >Cart</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_user.logout') }}"
+                                style="color: red"
+                                >Logout</a
+                            >
+                        </li>
+                        {% endif %}
+                        <!-- Outer else block -->
+                        {% else %}
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_user.login') }}"
+                                >Login</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_user.signup') }}"
+                                >Signup</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="{{ url_for('auth_admin.admin_login') }}"
+                                style="color: red"
+                                >!!! Admins Only !!!</a
+                            >
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %} {% if category ==
+        'error' %}
+        <div
+            class="alert alert-danger alter-dismissible fade show"
+            role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% else %}
+        <div
+            class="alert alert-success alter-dismissible fade show"
+            role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+        <!-- Hero Section -->
+        {% block hero %}{% endblock %}
+
+        <br />
+
+        <!-- Main Content -->
+        <div class="container">{% block content %}{% endblock %}</div>
+
+        <!-- Footer -->
+        <br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <footer class="bg-dark text-white text-center py-3">
+            <p>&copy; 2023 QuickGrocer App. All rights reserved.</p>
+        </footer>
+
+        <!-- Add Bootstrap and jQuery JS scripts -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script>
+            // Add an event listener to the button
+            function oldImagePreviewer() {
+                // Get references to the old image and the button
+                var oldImage = document.getElementById("oldImage");
+                var showOldImageButton =
+                    document.getElementById("oldImageButton");
+                if (oldImage.style.display === "none") {
+                    // Show the old image when the button is clicked
+                    oldImage.style.display = "block";
+                    oldImageButton.value = "Hide Old Image";
+                    oldImageButton.className = "btn btn-danger";
+                } else {
+                    // Hide the old image when the button is clicked again
+                    oldImage.style.display = "none";
+                    oldImageButton.value = "Show Old Image";
+                    oldImageButton.className = "btn btn-info";
+                }
+            }
+        </script>
+    </body>
+</html>

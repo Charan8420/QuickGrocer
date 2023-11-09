@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}New Unit{% endblock %}
+
+<!-- New Unit Form -->
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title text-center">Add New Unit</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Changes to be made -->
+                    <form
+                        method="post"
+                        action="{{ url_for('auth_admin.new_unit') }}"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="unit_name">Unit Name :</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="unit_name"
+                                name="unit_name"
+                                required />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Create Unit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

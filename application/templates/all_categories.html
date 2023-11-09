@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+<!-- Title Section -->
+{% block title %}QuickGrocer{% endblock %}
+
+<!-- Hero Section -->
+{% block hero %} {% include "search_form.html" %} {% endblock %}
+
+<!---->
+{% block content %}
+<!-- Category List -->
+{% if ctgrs %}
+<h2 class="navbar text-center bg-info text-white text-monospace">Categories</h2>
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            {% for category in ctgrs %}
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <a
+                        href="{{ url_for('views.view_category', category_id=category.id) }}"
+                        class="card-img-link">
+                        <img
+                            class="card-img-top"
+                            src="{{ url_for('static', filename='images/' + category.category_picture) }}"
+                            alt="category Image" />
+                    </a>
+
+                    <div class="card-body align-cat-title">
+                        <h4 class="card-title">{{ category.category_name }}</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- Add more category cards here -->
+        </div>
+    </div>
+</section>
+{% endif %} {% endblock %}
