@@ -1,6 +1,6 @@
 # Grocery Store Application
 
-### Note: This project will be updated by 18th December, 2023 with major changes
+### Note: This project will be updated by 18th December, 2023 with major changes!!!
 
 ```
 What's new:
