@@ -2,13 +2,13 @@
 
 ### Note: This project will be updated by 18th December, 2023 with major changes
 
-What's new:
+```What's new:
 - Re-built the entire frontend using Vue3
 - Redis Caching
 - Updates to DB Model {Roles table: User(old), Admin(old) & Store Manager(new), Orders table(new)}
 - Celery Jobs
 - Token Based Authentication (previously Session Based)
-- And many more!
+- And many more!```
 
 ## Description
 
