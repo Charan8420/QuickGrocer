@@ -20,6 +20,9 @@ The user can also view the total price of products in their cart and all the pro
 
 The admin can add, view, remove, and update products, categories & units.
 
+You can check the demonstration of this project in this video:  
+https://drive.google.com/file/d/1Q40dHwBtHEI474PGyxoHfNT6_No-4Kpm/view?usp=sharing
+
 ## Features
 
 User can:
