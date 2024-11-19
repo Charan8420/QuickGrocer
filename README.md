@@ -1,20 +1,5 @@
 # Grocery Store Application
 
-### Note: This project will be updated(Version-2) on 25th January, 2023 with major changes!!! 
-
-```
-What's new in Version-2:
-->  Re-built the entire frontend using Vue3
-->  Redis Caching
-->  Updates to DB Model {Roles table: User(old), Admin(old) & Store Manager(new), Orders table(new)}
-->  Celery Jobs
-->  Token Based Authentication (previously Session Based)
-->  And many more!
-```
-
--  This is a project I did as part of my degree for this term(Version-2) so I can only upload after the project evaluation is done to avoid others from plagiarising my work
--  Version-1, which you currently see, is of previous term
-
 ## Description
 
 In this project, I created a grocery store application that allows the user to add, remove, and update products in their cart to buy later.
