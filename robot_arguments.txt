@@ -1,0 +1,3 @@
+--outputDir tests/results/
+--pythonpath tests/resources/
+tests/user/
